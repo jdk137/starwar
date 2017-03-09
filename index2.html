@@ -21,12 +21,9 @@ body {background-color: #000;overflow:hidden;margin: 0;padding: 0;}
   height: 100vh;
   padding-top: 350px;
   top: 0;
-  transition: all 148s;
+  transition: all 20s;
 }
 </style>
-<audio autoplay loop>
-  <source src="starwars.mp3" type="audio/mpeg">
-</audio>
 <canvas id="c"></canvas>
 <div id="d">
   <div id="e">
@@ -38,41 +35,5 @@ body {background-color: #000;overflow:hidden;margin: 0;padding: 0;}
   </div>
 </div>
 <script>
-var c = document.getElementById("c");
-var h = window.innerHeight;
-var w = window.innerWidth;
-c.style.width = w + 'px';
-c.style.height = h + 'px';
-var ctx = c.getContext("2d");
-
-ctx.fillStyle = '#000';
-ctx.fillRect(0, 0, w, h);
-ctx.fillStyle = '#fff';
-
-var random = function (n) {
-  return Math.round(Math.random() * n);
-};
-
-var stars = [];
-var star;
-var num = w * h;
-for (var i = 0; i < num; i++) {
-  stars[i] = star = {
-    w: random(w),
-    h: random(h),
-    s: Math.pow(20, -Math.random() * 10) * 0.5
-  };
-  ctx.fillRect(star.w, star.h, star.s, star.s);
-}
-
-var r = w / 450;
-var d = document.getElementById("d");
-d.style.transform = 'matrix3d(' + r + ',0,0.00,0,0.00,' + r + ',0.00,-0.003,0,0,1,0,0,300,0,1)';
-
-var e = document.getElementById("e");
-setTimeout(function() {
-  e.style.top = '-2000px';
-}, 10);
-
-
+var c=document.getElementById("c"),h=window.innerHeight,w=window.innerWidth;c.style.width=w+"px",c.style.height=h+"px";var ctx=c.getContext("2d");ctx.fillStyle="#000",ctx.fillRect(0,0,w,h),ctx.fillStyle="#fff";for(var random=function(t){return Math.round(Math.random()*t)},stars=[],star,num=w*h,i=0;num>i;i++)stars[i]=star={w:random(w),h:random(h),s:.5*Math.pow(20,10*-Math.random())},ctx.fillRect(star.w,star.h,star.s,star.s);var r=w/450,d=document.getElementById("d");d.style.transform="matrix3d("+r+",0,0.00,0,0.00,"+r+",0.00,-0.003,0,0,1,0,0,300,0,1)";var e=document.getElementById("e");setTimeout(function(){e.style.top="-1500px"},10);
 </script>
