@@ -1,7 +1,68 @@
 <style>
-body {background-color: #000;overflow:hidden;margin: 0;padding: 0;}
+body {
+  background-color: #000;overflow:hidden;margin: 0;padding: 0;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+#time {
+  font-size: 55px;
+  width: 800px;
+  margin: auto;
+  margin-top: 42vh;
+  color: #41adba;
+  font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+  font-weight: normal;
+  animation-duration: 5s;
+  animation-name: time;
+  opacity: 0;
+}
+@keyframes time {
+  from {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+#logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./logo.svg');
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: center center; /* 50%, 50%, left, top, right, bottom */
+  animation-duration: 20s;
+  animation-name: zoom;
+  background-size: 0 0;
+}
+@keyframes zoom {
+  from {
+    background-size: 0 0;
+  }
+
+  40.009% {
+    background-size: 0 0;
+  }
+  40.01% {
+    background-size: 2890px 1740px;
+  }
+
+  to {
+    background-size: 0 0;
+  }
+}
 #c {
   position: absolute;
+  left: 0;
+  top: 0;
   z-index: -10;
 }
 #d {
@@ -21,12 +82,38 @@ body {background-color: #000;overflow:hidden;margin: 0;padding: 0;}
   height: 100vh;
   padding-top: 350px;
   top: 0;
-  transition: all 148s;
+  transition: all 100s;
+}
+audio {
+  opacity: 0.01;
+  position: absolute;
+  animation-duration: 10s;
+  animation-name: fadeoff;
+  top: 0;
+}
+@keyframes fadeoff {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.01;
+  }
+}
+audio:hover {
+  opacity: 1;
 }
 </style>
-<audio autoplay loop>
+<body>
+<audio loop controls id="audio">
   <source src="starwars.mp3" type="audio/mpeg">
 </audio>
+<div id="time">A long time ago in a galaxy far, far away....</div>
+<div id="logo"></div>
 <canvas id="c"></canvas>
 <div id="d">
   <div id="e">
@@ -72,7 +159,15 @@ d.style.transform = 'matrix3d(' + r + ',0,0.00,0,0.00,' + r + ',0.00,-0.003,0,0,
 var e = document.getElementById("e");
 setTimeout(function() {
   e.style.top = '-2000px';
-}, 10);
+}, 14000);
 
+setTimeout(function() {
+  document.getElementById("time").style.display = 'none';
+}, 5000);
+
+setTimeout(function() {
+  document.getElementById("audio").play();
+}, 8000);
 
 </script>
+</body>
