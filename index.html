@@ -21,7 +21,7 @@ body {
     opacity: 1;
   }
 
-  90% {
+  80% {
     opacity: 1;
   }
 
@@ -41,6 +41,7 @@ body {
   background-position: center center; /* 50%, 50%, left, top, right, bottom */
   animation-duration: 20s;
   animation-name: zoom;
+  animation-timing-function:cubic-bezier(0, 0.5, 1, 0.5);
   background-size: 0 0;
 }
 @keyframes zoom {
@@ -48,10 +49,10 @@ body {
     background-size: 0 0;
   }
 
-  40.009% {
+  30.009% {
     background-size: 0 0;
   }
-  40.01% {
+  30.01% {
     background-size: 2890px 1740px;
   }
 
@@ -96,7 +97,7 @@ audio {
     opacity: 1;
   }
 
-  50% {
+  30% {
     opacity: 1;
   }
 
@@ -159,15 +160,34 @@ d.style.transform = 'matrix3d(' + r + ',0,0.00,0,0.00,' + r + ',0.00,-0.003,0,0,
 var e = document.getElementById("e");
 setTimeout(function() {
   e.style.top = '-2000px';
-}, 14000);
+}, 12000);
 
 setTimeout(function() {
   document.getElementById("time").style.display = 'none';
 }, 5000);
 
+var audio = document.getElementById("audio");
 setTimeout(function() {
-  document.getElementById("audio").play();
-}, 8000);
+  audio.play();
+  getSoundAndFadeAudio("audio");
+}, 4500);
+
+// http://stackoverflow.com/questions/7451508/html5-audio-playback-with-fade-in-and-fade-out
+function getSoundAndFadeAudio (audiosnippetId) {
+  var sound = document.getElementById(audiosnippetId);
+  var fadePoint = 2;
+  sound.volume = 0;
+  var fadeAudio = setInterval(function () {
+    if (sound.currentTime < fadePoint) {
+      sound.volume += 0.05;
+    }
+    // When volume at zero stop all the intervalling
+    if (sound.volume >= 0.95) {
+      sound.volume = 1;
+      clearInterval(fadeAudio);
+    }
+  }, 100);
+}
 
 </script>
 </body>
